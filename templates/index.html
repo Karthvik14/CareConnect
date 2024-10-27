@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareConnect - AI Health Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-heartbeat"></i> CareConnect</h1>
+            <p>AI-Powered Health Analysis & Consultation</p>
+        </header>
+
+        <main>
+            <div class="tab-container">
+                <button class="tab-button active" onclick="switchTab('image-analysis')">
+                    <i class="fas fa-image"></i> Image Analysis
+                </button>
+                <button class="tab-button" onclick="switchTab('text-consultation')">
+                    <i class="fas fa-comments"></i> Text Consultation
+                </button>
+            </div>
+
+            <div id="image-analysis" class="tab-content">
+                <div class="upload-container">
+                    <form id="upload-form">
+                        <label for="image-upload" class="upload-button">
+                            <i class="fas fa-upload"></i> Upload Medical Image
+                        </label>
+                        <input type="file" id="image-upload" name="image" accept="image/*" style="display: none;">
+                        <button type="button" class="send-button" onclick="analyzeImage()">
+                            <i class="fas fa-search"></i> Analyze Image
+                        </button>
+                    </form>
+                </div>
+                <div id="image-preview" class="image-preview"></div>
+                <div id="image-analysis-result" class="analysis-result"></div>
+            </div>
+
+            <div id="text-consultation" class="tab-content" style="display: none;">
+                <div class="chat-container">
+                    <div id="chat-messages"></div>
+                    <div class="input-container">
+                        <textarea id="message-input" class="text-input" 
+                                placeholder="Describe your symptoms or ask a health-related question..."
+                                rows="3"></textarea>
+                        <button class="send-button" onclick="sendMessage()">
+                            <i class="fas fa-paper-plane"></i> Send
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <button class="clear-button" onclick="clearChat()">
+                <i class="fas fa-trash"></i> Clear Chat
+            </button>
+        </footer>
+    </div>
+
+    <script>
+        let currentTab = 'image-analysis';
+
+        function switchTab(tabId) {
+            document.getElementById(currentTab).style.display = 'none';
+            document.getElementById(tabId).style.display = 'block';
+            
+            document.querySelectorAll('.tab-button').forEach(function(button) {
+                button.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            currentTab = tabId;
+        }
+
+        document.getElementById('image-upload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const preview = document.getElementById('image-preview');
+                        preview.innerHTML = '<img src="' + e.target.result + '" alt="Preview">';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    alert('Please upload an image file.');
+                    this.value = '';
+                }
+            }
+        });
+
+        function analyzeImage() {
+            const fileInput = document.getElementById('image-upload');
+            if (!fileInput.files.length) {
+                alert('Please select an image first.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('image', fileInput.files[0]);
+
+            showLoading('image-analysis-result');
+
+            fetch('/analyze_image', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                hideLoading();
+                if (data.error) {
+                    document.getElementById('image-analysis-result').innerHTML = 
+                        `<div class="error-message">${data.error}</div>`;
+                } else {
+                    const formattedResult = data.result.replace(/\n/g, '<br>');
+                    document.getElementById('image-analysis-result').innerHTML = formattedResult;
+                }
+            })
+            .catch(error => {
+                hideLoading();
+                document.getElementById('image-analysis-result').innerHTML = 
+                    '<div class="error-message">Error analyzing image. Please try again.</div>';
+                console.error('Error:', error);
+            });
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('message-input');
+            const message = input.value.trim();
+            
+            if (message) {
+                addMessage('user', message);
+                input.value = '';
+                
+                showLoading('chat-messages');
+
+                fetch('/send_message', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    hideLoading();
+                    if (data.error) {
+                        addMessage('ai', `Error: ${data.error}`);
+                    } else {
+                        addMessage('ai', data.response);
+                    }
+                })
+                .catch(error => {
+                    hideLoading();
+                    addMessage('ai', 'Sorry, there was an error processing your message.');
+                    console.error('Error:', error);
+                });
+            }
+        }
+
+        function addMessage(type, content) {
+            const messagesDiv = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}-message`;
+            const formattedContent = content.replace(/\n/g, '<br>');
+            messageDiv.innerHTML = formattedContent;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function showLoading(containerId) {
+            const container = document.getElementById(containerId);
+            const spinner = document.createElement('div');
+            spinner.className = 'spinner';
+            spinner.id = 'loading-spinner';
+            container.appendChild(spinner);
+        }
+
+        function hideLoading() {
+            const spinner = document.getElementById('loading-spinner');
+            if (spinner) {
+                spinner.remove();
+            }
+        }
+
+        function clearChat() {
+            if (currentTab === 'text-consultation') {
+                document.getElementById('chat-messages').innerHTML = '';
+            } else {
+                document.getElementById('image-analysis-result').innerHTML = '';
+                document.getElementById('image-preview').innerHTML = '';
+                document.getElementById('image-upload').value = '';
+            }
+        }
+
+        document.getElementById('message-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>

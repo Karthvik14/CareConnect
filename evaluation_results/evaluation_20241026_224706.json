@@ -1,0 +1,52 @@
+{
+    "timestamp": "2024-10-26 22:46:35",
+    "total_cases": 3,
+    "successful_responses": 3,
+    "failed_responses": 0,
+    "response_times": [
+        13.97194,
+        0.751402,
+        16.192202
+    ],
+    "detailed_results": [
+        {
+            "input": "I've had a headache since this morning, but I can't take a break from using my laptop for work. What can I do to manage it?",
+            "expected_structure": [
+                "Greeting",
+                "Immediate Relief Steps",
+                "Management Tips",
+                "Prevention",
+                "Warning Signs"
+            ],
+            "response": "It's tough when a headache hits during a busy workday. While a break is ideal, here are some things you can try while still working on your laptop:\n\n**Immediate Relief Strategies:**\n\n* **Hydrate:** Dehydration can trigger headaches.  Drink a large glass of water immediately. Keep sipping water throughout the day.\n* **Caffeine:** A small amount of caffeine (like a cup of tea or coffee) can sometimes help alleviate a headache, especially if it's caffeine withdrawal related.  Be mindful of overdoing it, as too much caffeine can worsen headaches or cause rebound headaches later.\n* **Over-the-counter pain relievers:**  Ibuprofen (Advil, Motrin) or Naproxen (Aleve) are often effective for headaches.  Acetaminophen (Tylenol) can also help. Follow the dosage instructions carefully.\n* **Cold Compress:** Applying a cold pack or even a bag of frozen peas wrapped in a towel to your forehead or temples can help numb the pain.\n* **Pressure Points:** Gently massaging your temples, the bridge of your nose, or the back of your neck can provide some relief.\n\n**Adjusting Your Work Environment and Habits:**\n\n* **Screen Adjustments:**\n    * **Brightness:** Reduce the brightness on your laptop screen.\n    * **Blue Light Filter:** Enable the blue light filter (often called \"Night Light\" or \"Night Shift\") in your operating system settings. This reduces eye strain.\n    * **Font Size:** Increase the font size to make it easier to read.\n    * **Breaks (even short ones):**  Even 1-2 minutes every 20-30 minutes can help.  Look away from the screen and focus on something distant to relax your eye muscles.  The 20-20-20 rule is a good guide: Every 20 minutes, look at something 20 feet away for 20 seconds.\n* **Posture:**  Ensure you're sitting upright with good posture.  A poor posture can contribute to neck and shoulder tension, which can trigger headaches.\n* **Lighting:** Adjust your lighting to reduce glare and eye strain. Avoid working in dim lighting or with bright lights directly overhead.\n* **Deep Breathing:** Take a few slow, deep breaths to relax your muscles and reduce tension.\n\n**Identify and Address Potential Triggers:**\n\n* **Hunger:**  Low blood sugar can cause headaches. Have a healthy snack.\n* **Stress:** Stress is a common headache trigger.  Try some quick stress-relieving techniques like deep breathing or mindfulness exercises.\n* **Eye Strain:**  If you suspect eye strain, try the screen adjustments mentioned above.  Consider getting your eyes checked regularly.\n* **Sinus Issues:** If your headache is accompanied by facial pressure or congestion, it might be sinus-related.  A saline nasal spray might offer some relief.\n\n\n**Important Note:** If your headache is severe, persistent, sudden, or accompanied by other symptoms like fever, stiff neck, vision changes, or numbness, seek medical attention immediately. These could be signs of a more serious condition.  If your headaches are frequent, it's also a good idea to consult a doctor to rule out any underlying medical causes and discuss management strategies.\n",
+            "response_time": 13.97194,
+            "status": "success"
+        },
+        {
+            "input": "Hello",
+            "expected_structure": [
+                "Greeting",
+                "Question about feeling",
+                "Offer to help"
+            ],
+            "response": "Hello! How can I help you today?\n",
+            "response_time": 0.751402,
+            "status": "success"
+        },
+        {
+            "input": "I have back pain while working",
+            "expected_structure": [
+                "Greeting",
+                "Immediate Relief Steps",
+                "Management Tips",
+                "Prevention",
+                "Warning Signs"
+            ],
+            "response": "Back pain while working is a common problem. Here's a breakdown of potential causes, solutions, and when to seek professional help:\n\n**Possible Causes:**\n\n* **Poor Posture:** Slouching, hunching over a keyboard, or craning your neck can strain your back muscles.\n* **Prolonged Sitting/Standing:**  Staying in one position for extended periods, especially without proper support, can lead to muscle fatigue and pain.\n* **Repetitive Motions:**  Repeatedly lifting, twisting, or bending can strain your back.\n* **Ergonomic Issues:** An improperly set up workstation (e.g., chair too high or low, monitor at the wrong height) can contribute to back pain.\n* **Stress:** Tension and stress can manifest as muscle tightness, including in the back.\n* **Underlying Medical Conditions:**  Less commonly, back pain can be a symptom of a medical condition such as a herniated disc, spinal stenosis, or arthritis.\n* **Lifting Heavy Objects Incorrectly:** Using your back instead of your legs to lift can cause injury.\n* **Lack of Exercise:** Weak core muscles can lead to poor back support.\n* **Obesity:** Excess weight puts extra strain on the back.\n\n\n**Solutions You Can Try:**\n\n* **Improve Your Posture:** Be mindful of sitting and standing tall, with your shoulders relaxed and your ears aligned with your shoulders.\n* **Take Breaks:** Get up and move around every 30-60 minutes, even if it's just for a short walk or stretch.\n* **Ergonomic Assessment and Adjustments:** Evaluate your workstation setup. Ensure your chair supports your back properly, your monitor is at eye level, and your keyboard and mouse are within easy reach. Consider using a standing desk or alternating between sitting and standing.\n* **Stretching and Exercise:**  Regular stretching and strengthening exercises, especially for your core and back muscles, can help improve posture and support. Look for exercises specifically targeting back pain.\n* **Heat or Cold Therapy:** Applying heat or ice packs to the affected area can help reduce pain and inflammation.\n* **Over-the-Counter Pain Relief:** Medications like ibuprofen or acetaminophen can provide temporary relief.\n* **Supportive Footwear:** Wearing comfortable and supportive shoes can help alleviate back pain, particularly if you stand for long periods.\n* **Mindfulness and Stress Reduction Techniques:** Practices like yoga, meditation, or deep breathing can help manage stress and muscle tension.\n\n\n**When to Seek Professional Help:**\n\n* **Severe pain:** If your pain is intense or debilitating.\n* **Pain that radiates down your leg:** This could be a sign of a pinched nerve.\n* **Numbness or tingling in your legs or feet:**  This could indicate nerve compression.\n* **Muscle weakness:** Any loss of strength in your legs or back.\n* **Bowel or bladder problems:** In rare cases, back pain can be a sign of a serious medical condition affecting these functions.\n* **Pain that doesn't improve after a few weeks of self-care:** If your pain persists or worsens, it's time to see a doctor.\n\n**Seeking Professional Help:**\n\n* **Your primary care physician:** They can assess your condition and refer you to a specialist if needed.\n* **Physical therapist:** They can help you improve your posture, strengthen your back muscles, and develop an exercise program.\n* **Chiropractor:** They can adjust your spine and provide other treatments for back pain.\n* **Orthopedist:** They specialize in bone and joint problems.\n* **Pain management specialist:** They can help manage chronic pain.\n\n\nIt's crucial to listen to your body and take steps to address back pain before it becomes a chronic issue.  Don't hesitate to seek professional help if your pain is severe or doesn't improve with self-care measures.\n",
+            "response_time": 16.192202,
+            "status": "success"
+        }
+    ],
+    "success_rate": 100.0,
+    "average_response_time": 10.305181333333334
+}
