@@ -81,7 +81,8 @@ CareConnect/
 ├── evaluation_plots
 ├── evaluation_results
 ├── api_key.py                   # API key configuration
-├── uploads                      # Screenshots 
+├── uploads                      # Screenshots
+├── requirements.txt
 └── README.md                    # Project documentation
 ```
 
